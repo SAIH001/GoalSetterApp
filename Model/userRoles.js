@@ -20,9 +20,9 @@ const userRole_MOdel = mongoose.Schema(
 )  
         
 
-module.exports = mongoose.model("Roles",userRole_MOdel)
+const Roles =  mongoose.model("Roles",userRole_MOdel)
       
-
+module.exports = {Roles}
 
 
 

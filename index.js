@@ -4,15 +4,26 @@ const app = express();
 
 require("dotenv").config();
 
+
+// middleware
+
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+
 // Connection
 
 const {DbConnection} = require("./Config/Db")
 
 
 
-// model
+// controllers
 
-const {Roles} = require("./Model/userRoles")
+const {createRole,getAllRoles} = require("./Controllers/RolesController")
+
+
+app.route('/role').get(getAllRoles).post(createRole)
+
+
 
 
 
