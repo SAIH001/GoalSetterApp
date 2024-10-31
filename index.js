@@ -18,10 +18,13 @@ const {DbConnection} = require("./Config/Db")
 
 // controllers
 
-const {createRole,getAllRoles} = require("./Controllers/RolesController")
+const {createRole,getAllRoles,deleteRole} = require("./Controllers/RolesController")
 
-
+// [METHOD : GET , POST ] USER ROLES 
 app.route('/role').get(getAllRoles).post(createRole)
+
+// [METHOD : DELETE , UPDATE ] USER ROLES 
+app.route("/role/:rolename").delete(deleteRole)
 
 
 

@@ -48,11 +48,18 @@ async function getAllRoles(req,res){
     return res.send({"data":allRoles})
 }
 
+// METHOD -- DELETE 
+// API http://localhost:5000/role/:rolename
+//des:  delete single role
+
+async function deleteRole(req,res){
+    console.log(req.params.rolename)
+    const delteRole = await Roles.deleteOne({RoleName:req.params.rolename})
+    return res.send({"message":"role deleted successfully"})
+}
 
 
 
 
 
-
-
-module.exports = {createRole,getAllRoles}
+module.exports = {createRole,getAllRoles,deleteRole}
