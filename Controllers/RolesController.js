@@ -59,7 +59,64 @@ async function deleteRole(req,res){
 }
 
 
+// METHOD -- PU 
+// API http://localhost:5000/role/:rolename
+//des:  Update single role
+
+async function updateRole(req,res){
+    const updateRoleName = req.params.rolename;
+    
+    const role_old_data = await Roles.findOne({RoleName:updateRoleName})
+
+    if(role_old_data){
+
+        const {RoleName,status} = req.body;
+
+        const updateRole = await Roles.updateOne( 
+    
+            { 
+                RoleName    :  updateRoleName
+            } 
+            
+            ,
+            
+            { 
+                $set :  {
+                    "RoleName": RoleName.toLowerCase(),
+                    "status": status,
+                } 
+            } 
+            
+            
+        )
 
 
 
-module.exports = {createRole,getAllRoles,deleteRole}
+        return res.send({"data":req.body})
+    }else{
+        return res.send({"error":"not found"})
+    }
+
+}
+
+
+
+module.exports = {createRole,getAllRoles,deleteRole,updateRole}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
